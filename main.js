@@ -3,6 +3,7 @@ import { Gestor } from "./gestor";
 let gestor = new Gestor()
 let input = gestor.$('#enviar')
 let paises = {"argentina" : 50, "uruguay" : 60, "chile" : 70}
+let datos = [];
 
 input.addEventListener('click', e =>{
   e.preventDefault();
@@ -12,6 +13,8 @@ input.addEventListener('click', e =>{
       if(gestor.$(input).value==""){
         gestor.mostrarCartel(`EL CAMPO "${(campo).toLocaleUpperCase()}" ESTA VACIO`)
         formularioValido = false;
+      }else{
+        datos[campo] = gestor.$(input).value
       }
       
       if(campo=="edad" && gestor.$(input).value<18){
@@ -28,6 +31,11 @@ input.addEventListener('click', e =>{
   });
   if(formularioValido){
     gestor.mostrarCartel('FORMULARIO VALIDADO, felicitaciones')
+    console.log(datos)
+    let listaEventos = JSON.parse(localStorage.getItem('eventos')) || [];
+    listaEventos.push(datos);
+    console.log(listaEventos);
+    localStorage.setItem('eventos', JSON.stringify(listaEventos));    
   }else{
     gestor.mostrarCartel('FORMULARIO NO COMPLETO O LLENADO DE MANERA INCORRECTA')
   }
