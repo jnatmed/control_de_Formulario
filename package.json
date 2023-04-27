@@ -10,5 +10,9 @@
   },
   "devDependencies": {
     "vite": "^4.3.2"
+  },
+  "dependencies": {
+    "toastify-js": "^1.12.0",
+    "tostify": "^0.0.1"
   }
 }
