@@ -33,7 +33,14 @@ input.addEventListener('click', e =>{
     gestor.mostrarCartel('FORMULARIO VALIDADO, felicitaciones')
     console.log(datos)
     let listaEventos = JSON.parse(localStorage.getItem('eventos')) || [];
-    listaEventos.push(datos);
+    listaEventos.push({
+      "nombre" : datos['nombre'],
+      "apellido" : datos['apellido'],
+      "edad" : datos['edad'],
+      "evento" : datos['evento'],
+      "pais" : datos['pais'],
+      "cantidad" : datos['cantidad']
+    });
     console.log(listaEventos);
     localStorage.setItem('eventos', JSON.stringify(listaEventos));    
   }else{
